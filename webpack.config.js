@@ -39,6 +39,8 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
   },
-
+  resolve: {
+    modules: ['src', 'node_modules']
+  },
   mode: 'development'
 };
