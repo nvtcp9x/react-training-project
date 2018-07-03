@@ -35,3 +35,4 @@
   - create constant, actions in flag component
   - create flag container and map state, dispatch to props
   - edit webpack resolve https://webpack.js.org/configuration/resolve/#resolve-modules
+
