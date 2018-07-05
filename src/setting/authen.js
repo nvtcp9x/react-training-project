@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Link, Redirect, withRouter } from 'react-router-dom';
 
-
 // For Testing only
 export const fakeAuth = {
   isAuthenticated: false,
