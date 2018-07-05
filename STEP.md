@@ -35,4 +35,11 @@
   - create constant, actions in flag component
   - create flag container and map state, dispatch to props
   - edit webpack resolve https://webpack.js.org/configuration/resolve/#resolve-modules
-
+  
+## Setup react router v4
+  - install react router v4
+  - wrap Route in BrowserRouter
+  - create public layout
+  - add header to pulic layout
+  - create private layout
+  - copy fake authen code
