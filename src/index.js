@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from 'store/store';
 import App from 'components/app';
+import "babel-polyfill";
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 render(
