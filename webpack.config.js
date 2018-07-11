@@ -34,11 +34,17 @@ module.exports = {
       template: './src/index.html'
     }),
   ],
-  entry: './src/index.js',
+  entry: ["babel-polyfill", './src/index.js'],
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
-
+  devServer: {
+    historyApiFallback: true,
+  },
+  resolve: {
+    modules: ['src', 'node_modules']
+  },
   mode: 'development'
 };

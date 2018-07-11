@@ -1,8 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import store from 'store/store';
+import App from 'components/app';
+import "babel-polyfill";
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-const App = () => {
-  return <h1>Hello Webpack!</h1>;
-};
-
-ReactDOM.render(<App />, document.getElementById("root"));
+render(
+  <BrowserRouter>
+    <Provider store={ store }>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById('root')
+)
