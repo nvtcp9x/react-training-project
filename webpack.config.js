@@ -37,7 +37,10 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+  },
+  devServer: {
+    historyApiFallback: true,
+    //https://webpack.js.org/configuration/dev-server/#devserver-historyapifallback
   },
   resolve: {
     modules: ['src', 'node_modules']
