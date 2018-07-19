@@ -1,5 +1,5 @@
-const initialState = { 
-  flag: 0
+const initialState = {
+  flag: 0,
 };
 
 const flagReducer = (state = initialState, action) => {
@@ -7,12 +7,12 @@ const flagReducer = (state = initialState, action) => {
     case 'PLUS':
       return {
         ...state,
-        flag: state.flag + 1
+        flag: state.flag + 1,
       }
     case 'MINUS':
       return {
         ...state,
-        flag: state.flag - 1
+        flag: state.flag - 1,
       }
     default:
       return state
