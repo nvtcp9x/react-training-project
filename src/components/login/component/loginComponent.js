@@ -1,46 +1,69 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
-import { fakeAuth } from 'setting/authen';
+import auth from 'setting/authen';
 
 class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { redirectToReferrer: false };
+  onUserChange = (e) => {
+    this.setState({
+      user: e.target.value,
+    })
   }
 
-  login = () => {
-    fakeAuth.authenticate(() => {
-      this.setState({ redirectToReferrer: true });
-    });
-  };
+  onPasswordChange= (e) => {
+    this.setState({
+      password: e.target.value,
+    })
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault()
+    const { user, password } = this.state
+    const { login } = this.props
+    login({ user, password })
+  }
+
+  logout = () => {
+    const { logout } = this.props
+    auth.logout()
+    logout()
+  }
+
+  renderLogged = () => (
+    <div>
+      <h1>
+        Hello
+      </h1>
+      <h2>
+        you are logged in
+      </h2>
+      <button type="button" onClick={this.logout}>
+        Sign Out
+      </button>
+    </div>
+  )
+
+  renderNotLogged = () => (
+    <div>
+      <form onSubmit={this.onSubmit}>
+        <input type="text" name="username" onChange={this.onUserChange} />
+        <input type="password" name="password" onChange={this.onPasswordChange} />
+        <button type="submit">
+          Login
+        </button>
+      </form>
+    </div>
+  )
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }; // eslint-disable-line
-    const { redirectToReferrer } = this.state;
-
-    if (redirectToReferrer) {
-      return <Redirect to={from} />;
-    }
-
-    return (
-      <div>
-        <p>
-          You must log in to view the page at
-          {from.pathname}
-        </p>
-        <button type="button" onClick={this.login}>
-          Log in
-        </button>
-      </div>
-    );
+    const { logged } = this.props
+    return logged ? this.renderLogged() : this.renderNotLogged()
   }
 }
 
 Login.propTypes = {
-  location: PropTypes.shape({
-    state: PropTypes.string,
-  }),
+  login: PropTypes.func,
+  logout: PropTypes.func,
+  logged: PropTypes.bool,
 }
 
 export default Login;

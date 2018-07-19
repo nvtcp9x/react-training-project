@@ -35,7 +35,8 @@ module.exports = {
     }),
     new StyleLintPlugin(),
   ],
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
+  // babel-polyfill https://github.com/babel/babel-loader/issues/484#issuecomment-311581175
   output: {
     filename: 'main.js',
   },

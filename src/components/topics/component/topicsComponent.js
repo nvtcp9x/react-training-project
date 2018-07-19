@@ -43,7 +43,7 @@ const Topics = props => {
 }
 
 Topics.propTypes = {
-  match: Proptypes.string,
+  match: Proptypes.shape({}),
 }
 
 export default Topics;

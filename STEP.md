@@ -43,3 +43,21 @@
   - add header to pulic layout
   - create private layout
   - copy fake authen code
+
+## Setup Lint
+  - install babel-eslint estlint eslint-config-airbnb eslint-loader eslint-plugin-import
+    eslint-plugin-jsx-a11y eslint-plugin-react eslint-watch style-lint stylelint-config-standard
+    stylelint-webpack-plugin
+  - add script run lint in package.json
+  - edit webpack config, add loader ['babel-loader', 'eslint-loader']
+    add plugin new StyleLintPlugin()
+  - create .eslintrc.js stylelint.config.js
+
+## Authentication
+  - Go app, app has a state `logged: false` to management app auth, check token local storage
+    - No token -> logged: false
+      - Private layout access base on logged state -> no access
+      - Go login -> success -> set local storage (token, idUser) -> set logged: true
+    - Has token -> logged: true -> fetch userInfo by id and token in local storage
+      - response 401 -> unauthorized -> Token expired -> set logged: false
+      - response ok -> ok 

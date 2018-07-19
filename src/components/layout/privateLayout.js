@@ -1,20 +1,16 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { fakeAuth } from 'setting/authen';
-import Header from '../header';
-
+import { MainLayout } from './mainLayout'
 
 const PrivateLayout = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props => (
-      fakeAuth.isAuthenticated ? (
-        <React.Fragment>
-          <Header />
-          <hr />
+      rest.logged ? (
+        <MainLayout>
           <Component {...props} />
-        </React.Fragment>
+        </MainLayout>
       ) : (
         <Redirect
           to={{
@@ -31,6 +27,7 @@ PrivateLayout.propTypes = {
     pathname: PropTypes.string,
   }),
   component: PropTypes.func,
+  logged: PropTypes.bool,
 }
 
 export default PrivateLayout;
