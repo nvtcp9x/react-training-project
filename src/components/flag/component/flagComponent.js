@@ -1,16 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import './flag.scss';
 
-class Flag extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <button onClick={this.props.counterPlus}>PLUS</button>
-        <button disabled>{this.props.flag}</button>
-        <button onClick={this.props.counterMinus}>MINUS</button>
-      </React.Fragment>
-    )
-  }
+const Flag = props => {
+  const { counterPlus, counterMinus, flag } = props;
+  return (
+    <React.Fragment>
+      <button type="button" onClick={counterPlus}>
+          PLUS
+      </button>
+      <button type="button" disabled>
+        {flag}
+      </button>
+      <button type="button" onClick={counterMinus}>
+          MINUS
+      </button>
+    </React.Fragment>
+  );
 }
+
+Flag.propTypes = {
+  counterPlus: PropTypes.func,
+  counterMinus: PropTypes.func,
+  flag: PropTypes.bool,
+};
 
 export default Flag;

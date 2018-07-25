@@ -1,10 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Proptypes from 'prop-types';
 
 const Topic = ({ match }) => (
   <div>
-    <h3>{match.params.topicId}</h3>
+    <h3>
+      {match.params.topicId}
+    </h3>
   </div>
 );
+
+Topic.propTypes = {
+  match: Proptypes.string,
+}
 
 export default Topic;

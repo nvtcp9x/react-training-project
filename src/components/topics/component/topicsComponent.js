@@ -1,32 +1,49 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link, Redirect, withRouter } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import Proptypes from 'prop-types';
 import Topic from './topicComponent';
 
-const Topics = (props) => {
+const Topics = props => {
+  const { match } = props;
   return (
     <div>
-      <h2>Topics</h2>
+      <h2>
+        Topics
+      </h2>
       <ul>
         <li>
-          <Link to={`${props.match.url}/rendering`}>Rendering with React</Link>
+          <Link to={`${match.url}/rendering`}>
+            Rendering with React
+          </Link>
         </li>
         <li>
-          <Link to={`${props.match.url}/components`}>Components</Link>
+          <Link to={`${match.url}/components`}>
+            Components
+          </Link>
         </li>
         <li>
-          <Link to={`${props.match.url}/props-v-state`}>Props v. State</Link>
+          <Link to={`${match.url}/props-v-state`}>
+            Props v. State
+          </Link>
         </li>
       </ul>
 
-      <Route path={`${props.match.url}/:topicId`} component={Topic} />
+      <Route path={`${match.url}/:topicId`} component={Topic} />
       <Route
         exact
-        path={props.match.url}
-        render={() => <h3>Please select a topic.</h3>}
+        path={match.url}
+        render={() => (
+          <h3>
+            Please select a topic.
+          </h3>
+        )}
       />
     </div>
-  );
+  )
+}
+
+Topics.propTypes = {
+  match: Proptypes.string,
 }
 
 export default Topics;

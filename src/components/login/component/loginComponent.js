@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { fakeAuth } from 'setting/authen';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { fakeAuth } from 'setting/authen';
 
 class Login extends React.Component {
-  state = {
-    redirectToReferrer: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = { redirectToReferrer: false };
+  }
 
   login = () => {
     fakeAuth.authenticate(() => {
@@ -15,7 +16,7 @@ class Login extends React.Component {
   };
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } };
+    const { from } = this.props.location.state || { from: { pathname: '/' } }; // eslint-disable-line
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {
@@ -24,11 +25,22 @@ class Login extends React.Component {
 
     return (
       <div>
-        <p>You must log in to view the page at {from.pathname}</p>
-        <button onClick={this.login}>Log in</button>
+        <p>
+          You must log in to view the page at
+          {from.pathname}
+        </p>
+        <button type="button" onClick={this.login}>
+          Log in
+        </button>
       </div>
     );
   }
+}
+
+Login.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.string,
+  }),
 }
 
 export default Login;

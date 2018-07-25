@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Link, Redirect, withRouter } from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom';
 
 // For Testing only
 export const fakeAuth = {
@@ -12,23 +11,26 @@ export const fakeAuth = {
   signout(cb) {
     this.isAuthenticated = false;
     setTimeout(cb, 100);
-  }
+  },
 };
 
 export const AuthButton = withRouter(
-  ({ history }) =>
-    fakeAuth.isAuthenticated ? (
-      <p>
-        Welcome!{' '}
-        <button
-          onClick={() => {
-            fakeAuth.signout(() => history.push('/'));
-          }}
-        >
+  ({ history }) => (fakeAuth.isAuthenticated ? (
+    <p>
+      Welcome!
+      {' '}
+      <button
+        type="button"
+        onClick={() => {
+          fakeAuth.signout(() => history.push('/'));
+        }}
+      >
           Sign out
-        </button>
-      </p>
-    ) : (
-      <p>You are not logged in.</p>
-    )
+      </button>
+    </p>
+  ) : (
+    <p>
+      You are not logged in.
+    </p>
+  )),
 );
