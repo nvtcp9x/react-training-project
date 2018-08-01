@@ -10,7 +10,7 @@ const Topic = ({ match }) => (
 );
 
 Topic.propTypes = {
-  match: Proptypes.string,
+  match: Proptypes.shape({}),
 }
 
 export default Topic;

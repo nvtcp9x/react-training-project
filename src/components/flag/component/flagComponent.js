@@ -22,7 +22,7 @@ const Flag = props => {
 Flag.propTypes = {
   counterPlus: PropTypes.func,
   counterMinus: PropTypes.func,
-  flag: PropTypes.bool,
+  flag: PropTypes.number,
 };
 
 export default Flag;

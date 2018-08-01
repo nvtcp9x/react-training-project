@@ -1,36 +1,28 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-
-// For Testing only
-export const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
+export default {
+  getInfo() {
+    if (localStorage.info) {
+      const data = localStorage.getItem('info')
+      return JSON.parse(data) || false
+    }
+    return false
   },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  },
-};
 
-export const AuthButton = withRouter(
-  ({ history }) => (fakeAuth.isAuthenticated ? (
-    <p>
-      Welcome!
-      {' '}
-      <button
-        type="button"
-        onClick={() => {
-          fakeAuth.signout(() => history.push('/'));
-        }}
-      >
-          Sign out
-      </button>
-    </p>
-  ) : (
-    <p>
-      You are not logged in.
-    </p>
-  )),
-);
+  loggedIn() {
+    const info = this.getInfo()
+    return info !== null
+  },
+
+  getUserId() {
+    const info = this.getInfo()
+    return info.id || null
+  },
+
+  getAccessToken() {
+    const info = this.getInfo()
+    return info.token || null
+  },
+
+  logout() {
+    localStorage.removeItem('info')
+  },
+}

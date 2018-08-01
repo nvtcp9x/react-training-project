@@ -1,17 +1,15 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Header from '../header';
+import { MainLayout } from './mainLayout'
 
 export const PublicLayout = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props => (
-      <div className="DefaultLayout">
-        <Header />
-        <hr />
+      <MainLayout>
         <Component {...props} />
-      </div>
+      </MainLayout>
     )}
   />
 )
